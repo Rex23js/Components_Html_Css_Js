@@ -1,0 +1,103 @@
+<!--
+Componente Tabs: organiza o conteúdo em seções navegáveis com abas.
+Cada aba mostra um conteúdo e oculta os demais.
+Feito com HTML, CSS e JavaScript puro, sem bibliotecas externas.
+Ideal para painéis, formulários, perfis ou conteúdos organizados por categoria.
+Leve, reutilizável e fácil de manter.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs</title>
+
+    <style>
+      /* Container dos botões de abas */
+      .tabs {
+        display: flex; /* Coloca os botões lado a lado */
+        gap: 10px; /* Espaçamento entre as abas */
+        margin-bottom: 15px; /* Espaço abaixo das abas */
+      }
+
+      /* Estilo base dos botões de aba */
+      .tab-button {
+        padding: 10px 16px; /* Espaço interno do botão */
+        background-color: #eee; /* Cor de fundo padrão (cinza claro) */
+        border: none; /* Remove borda padrão */
+        cursor: pointer; /* Mostra que é clicável */
+        border-radius: 4px; /* Arredonda as bordas */
+        font-weight: bold; /* Deixa o texto em negrito */
+      }
+
+      /* Aba que está ativa (selecionada) */
+      .tab-button.active {
+        background-color: #007bff; /* Azul de destaque */
+        color: white; /* Texto branco */
+      }
+
+      /* Estilo dos blocos de conteúdo das abas */
+      .tab-content {
+        display: none; /* Todos começam escondidos */
+        padding: 15px; /* Espaço interno */
+        border: 1px solid #ccc; /* Borda ao redor do conteúdo */
+        border-radius: 4px; /* Arredondamento dos cantos */
+        background-color: #f9f9f9; /* Fundo levemente cinza */
+      }
+
+      /* Mostra somente o conteúdo da aba ativa */
+      .tab-content.active {
+        display: block; /* Torna visível */
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Container dos botões que trocam as abas -->
+    <div class="tabs">
+      <!-- Cada botão tem um data-tab que aponta para o conteúdo correspondente -->
+      <button class="tab-button active" data-tab="tab1">Sobre</button>
+      <button class="tab-button" data-tab="tab2">Projetos</button>
+      <button class="tab-button" data-tab="tab3">Contato</button>
+    </div>
+
+    <!-- Conteúdo que será exibido ao clicar nas abas -->
+    <div id="tab1" class="tab-content active">
+      <p>Bem-vindo à aba Sobre.</p>
+    </div>
+
+    <div id="tab2" class="tab-content">
+      <p>Esses são os projetos.</p>
+    </div>
+
+    <div id="tab3" class="tab-content">
+      <p>Aqui ficam as informações de contato.</p>
+    </div>
+
+    <script>
+      // Seleciona todos os botões e todas as áreas de conteúdo
+      const tabButtons = document.querySelectorAll(".tab-button");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      // Para cada botão, adiciona um evento de clique
+      tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const target = button.dataset.tab; // Pega o valor do atributo data-tab (ex: 'tab2')
+
+          // Remove a classe "active" de todos os botões
+          tabButtons.forEach((btn) => btn.classList.remove("active"));
+
+          // Remove a classe "active" de todos os conteúdos
+          tabContents.forEach((content) => content.classList.remove("active"));
+
+          // Adiciona a classe "active" no botão clicado
+          button.classList.add("active");
+
+          // Adiciona a classe "active" apenas no conteúdo correspondente ao botão
+          document.getElementById(target).classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
