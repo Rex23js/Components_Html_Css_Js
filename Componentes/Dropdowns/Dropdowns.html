@@ -1,0 +1,132 @@
+<!--
+Componente Dropdown: menu suspenso que aparece ao clicar ou passar o mouse em um botão.
+Útil para mostrar opções extras, configurações ou links sem ocupar espaço fixo.
+Feito com HTML, CSS e JavaScript puro.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dropdown - Componente Reutilizável</title>
+
+    <style>
+      /* Container que agrupa o botão e o menu */
+      .dropdown {
+        position: relative; /* Para posicionar o menu dentro */
+        display: inline-block;
+      }
+
+      /* Estilo do botão que abre o menu */
+      .dropdown-button {
+        padding: 10px 16px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        user-select: none; /* Evita seleção do texto ao clicar */
+      }
+
+      /* Estilo do menu dropdown */
+      .dropdown-menu {
+        display: none; /* Escondido por padrão */
+        position: absolute; /* Posicionado dentro do container */
+        top: 100%; /* Logo abaixo do botão */
+        left: 0;
+        background-color: white;
+        min-width: 160px; /* Largura mínima */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000; /* Sobre outros elementos */
+      }
+
+      /* Exibe o menu quando ativo */
+      .dropdown-menu.active {
+        display: block;
+      }
+
+      /* Estilo dos itens do menu */
+      .dropdown-menu button {
+        width: 100%; /* Ocupa toda a largura do menu */
+        padding: 10px;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        font-size: 14px;
+        color: #333;
+        transition: background-color 0.2s;
+      }
+
+      /* Efeito hover nos itens */
+      .dropdown-menu button:hover {
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Container dropdown -->
+    <div class="dropdown">
+      <!-- Botão que abre/fecha o menu -->
+      <button
+        class="dropdown-button"
+        aria-haspopup="true"
+        aria-expanded="false"
+        id="dropdownBtn"
+      >
+        Menu ▼
+      </button>
+
+      <!-- Menu suspenso com opções -->
+      <div
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="dropdownBtn"
+        id="dropdownMenu"
+      >
+        <button role="menuitem" tabindex="0">Opção 1</button>
+        <button role="menuitem" tabindex="0">Opção 2</button>
+        <button role="menuitem" tabindex="0">Opção 3</button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Seleciona o botão e o menu
+        const dropdownBtn = document.getElementById("dropdownBtn");
+        const dropdownMenu = document.getElementById("dropdownMenu");
+
+        // Função para abrir/fechar o menu
+        function toggleMenu() {
+          const isActive = dropdownMenu.classList.contains("active");
+          if (isActive) {
+            dropdownMenu.classList.remove("active");
+            dropdownBtn.setAttribute("aria-expanded", "false");
+          } else {
+            dropdownMenu.classList.add("active");
+            dropdownBtn.setAttribute("aria-expanded", "true");
+          }
+        }
+
+        // Fecha o menu se clicar fora dele
+        function closeMenu(event) {
+          if (!event.target.closest(".dropdown")) {
+            dropdownMenu.classList.remove("active");
+            dropdownBtn.setAttribute("aria-expanded", "false");
+          }
+        }
+
+        // Evento para abrir/fechar menu ao clicar no botão
+        dropdownBtn.addEventListener("click", toggleMenu);
+
+        // Evento para fechar menu clicando fora
+        document.addEventListener("click", closeMenu);
+      });
+    </script>
+  </body>
+</html>
