@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breadcrumb</title>
+
+    <!--
+Componente Breadcrumb: mostra o caminho de navegação hierárquico em um site.
+Exibe links separados por símbolos (ex: '>') para facilitar a navegação do usuário.
+Último item indica a página atual e não é link.
+Feito com HTML semântico, CSS para estilo visual e acessibilidade.
+Leve, simples e reutilizável em qualquer projeto.
+-->
+
+    <style>
+      .breadcrumb {
+        background-color: black; /* Cor de fundo preta */
+        padding: 10px 15px; /* Espaçamento interno */
+        height: 50px; /* Altura fixa de 50px */
+        list-style: none; /* Remove os marcadores padrão de lista */
+        display: flex; /* Exibe os itens em linha (horizontal) */
+        align-items: center; /* Alinha os itens verticalmente ao centro */
+        justify-content: center; /* Centraliza os itens horizontalmente */
+        padding: 0;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+
+      .breadcrumb li {
+        margin-right: 8px; /* Espaço entre os itens */
+      }
+
+      /* Adiciona o separador '>' antes de cada item, exceto o primeiro */
+      .breadcrumb li + li::before {
+        content: ">"; /* Símbolo separador */
+        margin-right: 8px;
+        color: #555;
+      }
+
+      /* Link dentro do breadcrumb */
+      .breadcrumb a {
+        text-decoration: none; /* Remove sublinhado */
+        color: #007bff; /* Azul padrão para links */
+      }
+
+      .breadcrumb a:hover {
+        text-decoration: underline; /* Sublinha ao passar o mouse */
+      }
+
+      /* Último item (página atual) estilizado diferentemente */
+      .breadcrumb li[aria-current="page"] {
+        color: #555; /* Cor cinza escuro */
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <nav aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Roupas</a></li>
+        <li aria-current="page">Camisas</li>
+      </ol>
+    </nav>
+  </body>
+</html>
