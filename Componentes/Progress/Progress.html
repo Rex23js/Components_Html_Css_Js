@@ -1,0 +1,94 @@
+<!--
+Componente Progress Bar: representa visualmente o andamento de uma tarefa.
+Muito usado em uploads, envios, carregamentos etc.
+Feito com HTML, CSS e JavaScript puro.
+Inclui animação suave e valor dinâmico.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Progress Bar - Componente Reutilizável</title>
+
+    <style>
+      /* Container geral da barra */
+      .progress-container {
+        width: 80%; /* Tamanho da barra */
+        max-width: 500px;
+        margin: 40px auto;
+        background-color: #eee; /* Cor de fundo da barra */
+        border-radius: 25px; /* Deixa os cantos arredondados */
+        overflow: hidden; /* Garante que o preenchimento respeite os cantos */
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); /* Leve sombra interna */
+      }
+
+      /* Parte interna que cresce conforme o progresso */
+      .progress-bar {
+        height: 25px;
+        width: 0%; /* Começa em 0 */
+        background-color: #4caf50; /* Verde de sucesso */
+        transition: width 0.4s ease; /* Animação suave ao mudar a largura */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      /* Botão que simula o progresso */
+      .progress-btn {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s;
+      }
+
+      .progress-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Barra de progresso -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar">0%</div>
+    </div>
+
+    <!-- Botão para simular preenchimento -->
+    <button class="progress-btn" id="startBtn">Iniciar Progresso</button>
+
+    <script>
+      // Espera a página carregar
+      document.addEventListener("DOMContentLoaded", () => {
+        const progressBar = document.getElementById("progressBar");
+        const startBtn = document.getElementById("startBtn");
+
+        // Função que simula carregamento
+        startBtn.addEventListener("click", () => {
+          let progress = 0;
+
+          // Intervalo para simular o avanço do progresso
+          const interval = setInterval(() => {
+            if (progress >= 100) {
+              clearInterval(interval); // Para quando chegar em 100%
+            } else {
+              progress += 1; // Incrementa o progresso
+              progressBar.style.width = progress + "%"; // Altera a largura da barra
+              progressBar.textContent = progress + "%"; // Mostra o valor dentro da barra
+            }
+          }, 50); // A cada 50ms, o progresso aumenta 1%
+        });
+      });
+    </script>
+  </body>
+</html>
