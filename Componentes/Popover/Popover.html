@@ -1,0 +1,133 @@
+<!--
+Componente Popover: balão de informação que aparece próximo a um elemento.
+Usado para dar dicas, explicações ou detalhes extras ao usuário.
+Funciona com hover (mouse) ou foco (teclado), garantindo acessibilidade.
+Feito com HTML, CSS e JS puro, leve e fácil de customizar.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Popover - Componente Reutilizável</title>
+
+    <style>
+      /* Container do popover */
+      .popover-container {
+        position: relative; /* Para posicionar o popover absoluto dentro */
+        display: inline-block; /* Para que o container se ajuste ao conteúdo */
+        cursor: pointer; /* Mãozinha para indicar interatividade */
+      }
+
+      /* O botão ou elemento que dispara o popover */
+      .popover-trigger {
+        padding: 8px 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      /* O balão popover: inicialmente escondido */
+      .popover-content {
+        position: absolute; /* Posicionado relativamente ao container */
+        top: 100%; /* Logo abaixo do botão */
+        left: 50%; /* Centralizado horizontalmente */
+        transform: translateX(-50%); /* Ajusta para centralizar exato */
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 10px;
+        width: 200px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        opacity: 0; /* Invisível */
+        visibility: hidden; /* Remove da visualização */
+        transition: opacity 0.3s ease;
+        z-index: 1000; /* Sobre outros elementos */
+      }
+
+      /* Título do popover */
+      .popover-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 16px;
+      }
+
+      /* Quando o popover está ativo (visível) */
+      .popover-content.active {
+        opacity: 1;
+        visibility: visible;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Container que agrupa o gatilho e o popover -->
+    <div
+      class="popover-container"
+      tabindex="0"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-controls="popover1"
+    >
+      <!-- Botão que dispara o popover -->
+      <button
+        class="popover-trigger"
+        id="popoverTrigger1"
+        aria-describedby="popover1"
+      >
+        Hover ou Foco Aqui
+      </button>
+
+      <!-- Conteúdo do popover -->
+      <div
+        class="popover-content"
+        id="popover1"
+        role="tooltip"
+        aria-hidden="true"
+      >
+        <div class="popover-title">Título do Popover</div>
+        <div class="popover-body">
+          Este é um balão de informação que aparece quando o usuário interage
+          com o botão acima.
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Aguarda DOM pronto
+      document.addEventListener("DOMContentLoaded", () => {
+        // Seleciona container do popover
+        const popoverContainer = document.querySelector(".popover-container");
+        // Seleciona o conteúdo do popover
+        const popoverContent = document.getElementById("popover1");
+
+        // Função para mostrar popover
+        function showPopover() {
+          popoverContent.classList.add("active");
+          popoverContent.setAttribute("aria-hidden", "false");
+          popoverContainer.setAttribute("aria-expanded", "true");
+        }
+
+        // Função para esconder popover
+        function hidePopover() {
+          popoverContent.classList.remove("active");
+          popoverContent.setAttribute("aria-hidden", "true");
+          popoverContainer.setAttribute("aria-expanded", "false");
+        }
+
+        // Mostrar popover ao passar mouse (hover)
+        popoverContainer.addEventListener("mouseenter", showPopover);
+        // Esconder popover ao tirar o mouse
+        popoverContainer.addEventListener("mouseleave", hidePopover);
+
+        // Mostrar popover ao focar (ex: tab)
+        popoverContainer.addEventListener("focusin", showPopover);
+        // Esconder popover ao perder foco
+        popoverContainer.addEventListener("focusout", hidePopover);
+      });
+    </script>
+  </body>
+</html>
