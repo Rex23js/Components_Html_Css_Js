@@ -1,0 +1,42 @@
+<!--
+Componente Spinner: indicador visual que mostra que algo está carregando.
+Útil para informar ao usuário que precisa aguardar.
+Feito com HTML e CSS puros, usando animação.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spinner - Componente Reutilizável</title>
+
+    <style>
+      /* Container do spinner para centralizar e definir tamanho */
+      .spinner {
+        width: 40px; /* Largura do spinner */
+        height: 40px; /* Altura do spinner */
+        border: 4px solid #f3f3f3; /* Cor clara da borda */
+        border-top: 4px solid #007bff; /* Cor da borda que gira (destaque) */
+        border-radius: 50%; /* Forma circular */
+        animation: spin 1s linear infinite; /* Animação contínua de giro */
+        margin: 20px auto; /* Espaçamento em cima/baixo e centralizado horizontalmente */
+      }
+
+      /* Define a animação spin: gira 360 graus */
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg); /* Início sem rotação */
+        }
+        100% {
+          transform: rotate(360deg); /* Final gira uma volta completa */
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Spinner visível -->
+    <div class="spinner" aria-label="Carregando" role="status"></div>
+  </body>
+</html>
