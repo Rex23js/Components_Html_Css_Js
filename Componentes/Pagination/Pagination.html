@@ -1,0 +1,124 @@
+<!--
+Componente Pagination: permite navegar entre várias páginas de conteúdo.
+Mostra botões numerados, além de “Anterior” e “Próximo”.
+Destaca a página atual e desativa botões quando necessário.
+Feito com HTML, CSS e JavaScript puro.
+Reutilizável e adaptável para qualquer sistema com conteúdo paginado.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagination</title>
+
+    <style>
+      /* Estilo da lista de paginação */
+      .pagination {
+        list-style: none; /* Remove bolinhas da lista */
+        display: flex; /* Itens em linha (horizontal) */
+        padding: 0;
+        gap: 5px; /* Espaço entre os botões */
+      }
+
+      /* Estilo base dos botões */
+      .pagination li button {
+        padding: 8px 12px; /* Espaço interno */
+        border: 1px solid #ccc; /* Borda cinza clara */
+        background: white; /* Fundo branco */
+        cursor: pointer; /* Cursor de clique */
+        font-size: 14px;
+        border-radius: 4px; /* Cantos arredondados */
+      }
+
+      /* Estilo do botão da página ativa */
+      .pagination li button.active {
+        background-color: #007bff; /* Azul */
+        color: white; /* Texto branco */
+        border-color: #007bff;
+      }
+
+      /* Estilo para botões desativados (ex: início ou fim) */
+      .pagination li button:disabled {
+        cursor: not-allowed; /* Cursor de bloqueado */
+        opacity: 0.5; /* Visualmente apagado */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navegação de paginação com acessibilidade -->
+    <nav aria-label="Paginação">
+      <ul class="pagination">
+        <!-- Botão para ir para a página anterior -->
+        <li><button class="prev">Anterior</button></li>
+
+        <!-- Botões das páginas -->
+        <li><button class="page active">1</button></li>
+        <li><button class="page">2</button></li>
+        <li><button class="page">3</button></li>
+
+        <!-- Botão para ir para a próxima página -->
+        <li><button class="next">Próximo</button></li>
+      </ul>
+    </nav>
+
+    <script>
+      // Aguarda o carregamento total do DOM
+      document.addEventListener("DOMContentLoaded", () => {
+        // Seleciona os botões principais
+        const prevBtn = document.querySelector(".prev");
+        const nextBtn = document.querySelector(".next");
+        const pageButtons = document.querySelectorAll(".page");
+
+        // Define a página atual (começa em 1)
+        let currentPage = 1;
+        // Conta total de páginas (botões)
+        const totalPages = pageButtons.length;
+
+        // Atualiza visualmente qual página está ativa e os estados dos botões
+        function updatePagination() {
+          pageButtons.forEach((btn, index) => {
+            // Ativa o botão da página atual e desativa os outros
+            btn.classList.toggle("active", index + 1 === currentPage);
+          });
+
+          // Desativa o botão "Anterior" se estiver na primeira página
+          prevBtn.disabled = currentPage === 1;
+          // Desativa o botão "Próximo" se estiver na última página
+          nextBtn.disabled = currentPage === totalPages;
+        }
+
+        // Clique direto em um número de página
+        pageButtons.forEach((btn, index) => {
+          btn.addEventListener("click", () => {
+            currentPage = index + 1; // Define a página clicada
+            updatePagination(); // Atualiza a interface
+            console.log("Página atual:", currentPage); // Só para debug
+          });
+        });
+
+        // Clique no botão "Anterior"
+        prevBtn.addEventListener("click", () => {
+          if (currentPage > 1) {
+            currentPage--;
+            updatePagination();
+            console.log("Página atual:", currentPage);
+          }
+        });
+
+        // Clique no botão "Próximo"
+        nextBtn.addEventListener("click", () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            updatePagination();
+            console.log("Página atual:", currentPage);
+          }
+        });
+
+        // Inicializa a paginação (define a página 1 como ativa)
+        updatePagination();
+      });
+    </script>
+  </body>
+</html>
