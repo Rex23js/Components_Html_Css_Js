@@ -1,0 +1,79 @@
+<!--
+Componente Range (Slider): permite selecionar um valor entre um mínimo e um máximo.
+Ideal para filtros, ajustes de volume, brilho, etc.
+Feito com HTML, CSS e JavaScript puro.
+Valor é exibido dinamicamente conforme o usuário desliza.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Range / Slider - Componente Reutilizável</title>
+
+    <style>
+      /* Estilo do container do controle */
+      .range-container {
+        width: 300px; /* Largura do componente */
+        margin: 40px auto; /* Centraliza na página */
+        font-family: Arial, sans-serif;
+      }
+
+      /* Título ou rótulo do controle */
+      .range-label {
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      /* Estilo básico do input tipo range */
+      .range-slider {
+        width: 100%; /* Ocupa toda a largura disponível */
+        margin: 10px 0;
+      }
+
+      /* Valor mostrado ao lado do slider */
+      .range-value {
+        font-size: 14px;
+        color: #007bff;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Componente slider -->
+    <div class="range-container">
+      <!-- Rótulo informativo -->
+      <div class="range-label">Volume:</div>
+
+      <!-- Slider que vai de 0 até 100 -->
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+        class="range-slider"
+        id="volumeSlider"
+      />
+
+      <!-- Valor atual do slider -->
+      <span class="range-value" id="volumeValue">50</span>
+    </div>
+
+    <script>
+      // Espera o DOM carregar
+      document.addEventListener("DOMContentLoaded", () => {
+        // Seleciona os elementos
+        const slider = document.getElementById("volumeSlider");
+        const valueDisplay = document.getElementById("volumeValue");
+
+        // Atualiza o valor ao mover o slider
+        slider.addEventListener("input", () => {
+          valueDisplay.textContent = slider.value; // Mostra o valor atual
+        });
+      });
+    </script>
+  </body>
+</html>
