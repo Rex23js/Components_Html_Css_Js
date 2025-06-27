@@ -1,0 +1,72 @@
+<!--
+Componente Tooltip: dica curta que aparece quando o usuário passa o mouse sobre um elemento.
+Útil para explicar ícones, botões ou palavras sem ocupar espaço permanente na tela.
+Feito com HTML, CSS e JavaScript puro.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tooltip - Componente Reutilizável</title>
+
+    <style>
+      /* Container que envolve o elemento com tooltip */
+      .tooltip-container {
+        position: relative; /* Para posicionar o tooltip absoluto dentro */
+        display: inline-block; /* Ajusta ao tamanho do conteúdo */
+        cursor: pointer; /* Indica que é interativo */
+      }
+
+      /* Estilo do tooltip - inicialmente escondido */
+      .tooltip-text {
+        position: absolute; /* Posicionado em relação ao container */
+        bottom: 125%; /* Aparece acima do elemento */
+        left: 50%; /* Centralizado horizontalmente */
+        transform: translateX(-50%); /* Ajusta para centralizar exato */
+        background-color: #333; /* Fundo escuro */
+        color: #fff; /* Texto branco */
+        padding: 6px 8px; /* Espaçamento interno */
+        border-radius: 4px; /* Cantos arredondados */
+        font-size: 12px; /* Texto pequeno */
+        white-space: nowrap; /* Impede quebra de linha */
+        opacity: 0; /* Transparente (invisível) */
+        visibility: hidden; /* Não aparece na tela */
+        transition: opacity 0.3s ease; /* Animação suave */
+        z-index: 1000; /* Fica acima de outros elementos */
+        pointer-events: none; /* Ignora eventos do mouse */
+      }
+
+      /* Triângulo pequeno (seta) do tooltip */
+      .tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%; /* Posiciona abaixo do tooltip */
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: #333 transparent transparent transparent; /* Triângulo preto */
+      }
+
+      /* Mostrar tooltip ao passar o mouse no container */
+      .tooltip-container:hover .tooltip-text,
+      .tooltip-container:focus-within .tooltip-text {
+        opacity: 1; /* Visível */
+        visibility: visible;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Elemento com tooltip -->
+    <div class="tooltip-container" tabindex="0" aria-describedby="tooltip1">
+      <button>Passar o mouse aqui</button>
+      <!-- Texto do tooltip -->
+      <div class="tooltip-text" role="tooltip" id="tooltip1">
+        Esta é uma dica rápida!
+      </div>
+    </div>
+  </body>
+</html>
