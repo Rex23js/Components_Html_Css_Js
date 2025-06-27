@@ -1,0 +1,101 @@
+<!--
+Componente Collapse: área que pode ser mostrada ou escondida dinamicamente.
+Útil para esconder detalhes, FAQs, descrições longas, etc.
+Feito com HTML, CSS e JavaScript puros.
+Botão controla a visibilidade do conteúdo relacionado.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Collapse - Componente Reutilizável</title>
+
+    <style>
+      /* Estilo básico do botão que controla o collapse */
+      .collapse-btn {
+        width: 100%; /* Ocupa toda a largura do container */
+        padding: 10px 15px; /* Espaçamento interno confortável */
+        font-size: 16px;
+        text-align: left; /* Texto alinhado à esquerda */
+        background-color: #007bff; /* Azul para destaque */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer; /* Cursor em forma de mão */
+        outline: none; /* Remove contorno padrão no clique */
+        transition: background-color 0.3s ease;
+      }
+
+      /* Efeito visual ao passar o mouse */
+      .collapse-btn:hover {
+        background-color: #0056b3; /* Azul mais escuro */
+      }
+
+      /* Conteúdo que será mostrado ou escondido */
+      .collapse-content {
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-top: none; /* Para juntar com o botão */
+        background-color: #f9f9f9;
+        display: none; /* Escondido por padrão */
+      }
+
+      /* Classe para mostrar o conteúdo */
+      .collapse-content.active {
+        display: block; /* Exibe o conteúdo */
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Botão para abrir/fechar o conteúdo -->
+    <button
+      class="collapse-btn"
+      aria-expanded="false"
+      aria-controls="collapse1"
+      id="btnCollapse1"
+    >
+      Mostrar Detalhes
+    </button>
+
+    <!-- Conteúdo colapsável -->
+    <div
+      class="collapse-content"
+      id="collapse1"
+      role="region"
+      aria-labelledby="btnCollapse1"
+    >
+      <p>
+        Aqui está o conteúdo que pode ser mostrado ou escondido quando você
+        clica no botão acima. Use isso para detalhes, FAQs, ou qualquer
+        informação extra.
+      </p>
+    </div>
+
+    <script>
+      // Espera o carregamento completo do DOM
+      document.addEventListener("DOMContentLoaded", () => {
+        // Seleciona o botão pelo ID
+        const btn = document.getElementById("btnCollapse1");
+
+        // Seleciona o conteúdo que será mostrado/escondido
+        const content = document.getElementById("collapse1");
+
+        // Adiciona evento de clique no botão
+        btn.addEventListener("click", () => {
+          // Alterna a classe "active" para mostrar/esconder o conteúdo
+          content.classList.toggle("active");
+
+          // Atualiza atributo aria-expanded para acessibilidade
+          const expanded = btn.getAttribute("aria-expanded") === "true";
+          btn.setAttribute("aria-expanded", !expanded);
+
+          // Atualiza texto do botão de acordo com o estado
+          btn.textContent = expanded ? "Mostrar Detalhes" : "Esconder Detalhes";
+        });
+      });
+    </script>
+  </body>
+</html>
