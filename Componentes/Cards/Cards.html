@@ -1,0 +1,119 @@
+<!--
+Componente Card: caixa visual que agrupa imagem, texto e ações.
+Usado para exibir produtos, perfis, artigos, etc.
+Normalmente contém: imagem + título + descrição + botão.
+Visual limpo, moderno e reutilizável com HTML e CSS puro.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card</title>
+
+    <style>
+      /* Container para agrupar vários cards lado a lado */
+      .card-container {
+        display: flex; /* Exibe os cards em linha */
+        gap: 20px; /* Espaçamento entre os cards */
+        flex-wrap: wrap; /* Permite quebrar linha quando não couber */
+        padding: 20px; /* Espaço ao redor dos cards */
+        justify-content: center; /* Centraliza na tela */
+      }
+
+      /* Estilo geral do card */
+      .card {
+        width: 250px; /* Largura fixa do card */
+        border: 1px solid #ccc; /* Borda cinza clara */
+        border-radius: 8px; /* Cantos arredondados */
+        overflow: hidden; /* Garante que a imagem não ultrapasse os limites */
+        background-color: #fff; /* Fundo branco */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+        font-family: sans-serif; /* Fonte moderna */
+        transition: transform 0.2s; /* Efeito suave ao passar o mouse */
+      }
+
+      /* Efeito de escala ao passar o mouse */
+      .card:hover {
+        transform: scale(1.03); /* Aumenta levemente o tamanho */
+      }
+
+      /* Imagem no topo do card */
+      .card img {
+        width: 100%; /* A imagem ocupa toda a largura do card */
+        height: 150px; /* Altura fixa */
+        object-fit: cover; /* Corta a imagem sem distorcer */
+      }
+
+      /* Área interna do card (texto e botão) */
+      .card-body {
+        padding: 15px; /* Espaço interno */
+      }
+
+      /* Título do card */
+      .card-title {
+        font-size: 18px; /* Tamanho da fonte */
+        font-weight: bold; /* Negrito */
+        margin-bottom: 10px; /* Espaço abaixo do título */
+      }
+
+      /* Texto descritivo do card */
+      .card-text {
+        font-size: 14px;
+        color: #555; /* Cinza escuro */
+        margin-bottom: 15px; /* Espaço abaixo do texto */
+      }
+
+      /* Botão de ação do card */
+      .card-button {
+        display: inline-block;
+        padding: 8px 12px;
+        background-color: #007bff; /* Azul */
+        color: white;
+        border: none;
+        border-radius: 4px; /* Cantos arredondados */
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      /* Efeito no botão ao passar o mouse */
+      .card-button:hover {
+        background-color: #0056b3; /* Azul mais escuro */
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Agrupamento de cards -->
+    <div class="card-container">
+      <!-- Primeiro card -->
+      <div class="card">
+        <!-- Imagem superior -->
+        <img src="https://via.placeholder.com/250x150" alt="Imagem do Card" />
+
+        <!-- Área de conteúdo -->
+        <div class="card-body">
+          <div class="card-title">Título do Card</div>
+          <div class="card-text">
+            Uma descrição simples do conteúdo apresentado neste card.
+          </div>
+          <a href="#" class="card-button">Saiba Mais</a>
+        </div>
+      </div>
+
+      <!-- Segundo card (exemplo duplicado) -->
+      <div class="card">
+        <img src="https://via.placeholder.com/250x150" alt="Imagem" />
+        <div class="card-body">
+          <div class="card-title">Outro Card</div>
+          <div class="card-text">
+            Este é mais um exemplo de como usar cards para exibir conteúdo.
+          </div>
+          <a href="#" class="card-button">Ver Detalhes</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
