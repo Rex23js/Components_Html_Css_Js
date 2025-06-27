@@ -1,0 +1,76 @@
+<!--
+Componente Badge: marcador visual pequeno usado para mostrar contagens ou rótulos.
+Pode ser aplicado em botões, ícones ou listas para indicar notificações, status ou categorias.
+Geralmente tem formato circular (contagem) ou pílula (status).
+Feito com HTML e CSS puro, leve e fácil de manter.
+Muito usado em interfaces modernas para dar feedback visual rápido.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Badge</title>
+
+    <style>
+      /* Estilo do botão onde o badge vai aparecer */
+      .btn {
+        position: relative; /* Define contexto para o posicionamento absoluto do badge */
+        padding: 10px 20px; /* Espaçamento interno */
+        font-size: 16px;
+        border: none;
+        background-color: #007bff; /* Cor azul padrão */
+        color: white; /* Cor do texto */
+        border-radius: 5px; /* Borda arredondada */
+        cursor: pointer; /* Muda o cursor para "mão" ao passar o mouse */
+      }
+
+      /* Estilo do badge de contagem */
+      .badge {
+        position: absolute; /* Posiciona em relação ao botão */
+        top: -5px; /* Levemente acima do botão */
+        right: -5px; /* Levemente à direita do botão */
+        background-color: red; /* Cor vermelha (avisos ou notificações) */
+        color: white; /* Texto branco */
+        border-radius: 50%; /* Formato circular */
+        padding: 5px 8px; /* Tamanho da bolinha */
+        font-size: 12px;
+        font-weight: bold; /* Texto mais forte para destaque */
+      }
+
+      /* Badge no formato de rótulo (tipo etiqueta ou status) */
+      .label-badge {
+        background-color: #28a745; /* Verde (representa status positivo) */
+        color: white;
+        padding: 4px 8px; /* Tamanho mais compacto */
+        border-radius: 10px; /* Formato de pílula */
+        font-size: 12px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Botão com badge de contagem (ex: mensagens) -->
+    <button class="btn">
+      Mensagens
+      <span class="badge">3</span>
+      <!-- Badge vermelho de notificação -->
+    </button>
+
+    <br /><br />
+    <!-- Espaço entre os exemplos -->
+
+    <!-- Badge usado como rótulo de status (tipo etiqueta) -->
+    <p>Status: <span class="label-badge">Ativo</span></p>
+
+    <!-- Outro exemplo de badge de status com cor personalizada -->
+    <p>
+      Versão:
+      <span class="label-badge" style="background-color: #ffc107; color: #333">
+        Beta
+      </span>
+    </p>
+  </body>
+</html>
