@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion - Componente Reutilizável</title>
+
+    <!--
+Componente Accordion: usado para esconder/mostrar seções de conteúdo clicáveis.
+Ideal para FAQs ou áreas com informações colapsáveis.
+Apenas uma seção é exibida por vez (modo exclusivo).
+Feito com HTML, CSS e JavaScript puro, sem bibliotecas externas.
+Totalmente reutilizável e fácil de manter.
+-->
+
+    <style>
+      /* Define o estilo dos botões do accordion */
+      .accordion-header {
+        width: 100%; /* Ocupa toda a largura do container */
+        padding: 10px; /* Espaçamento interno para conforto visual */
+        text-align: left; /* Alinha o texto à esquerda */
+        background-color: #eee; /* Cor de fundo clara */
+        border: 1px solid #ccc; /* Borda cinza clara */
+        cursor: pointer; /* Cursor em forma de mão ao passar o mouse */
+        font-weight: bold; /* Texto em negrito */
+        transition: background-color 0.3s ease; /* Suaviza a mudança de cor ao passar o mouse */
+      }
+
+      /* Efeito visual ao passar o mouse nos botões */
+      .accordion-header:hover {
+        background-color: #ddd; /* Cor um pouco mais escura ao hover */
+      }
+
+      /* Estilo da área de conteúdo do accordion */
+      .accordion-content {
+        display: none; /* Esconde o conteúdo por padrão */
+        padding: 10px; /* Espaço interno */
+        border: 1px solid #ccc; /* Borda para destacar o conteúdo */
+        border-top: none; /* Remove a borda superior para se unir ao botão */
+        background-color: #f9f9f9; /* Cor de fundo levemente acinzentada */
+      }
+
+      /* Classe usada para exibir a área de conteúdo */
+      .accordion-content.active {
+        display: block; /* Mostra o conteúdo quando esta classe é aplicada */
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Container principal do componente accordion -->
+    <div class="accordion">
+      <!-- Botão que dispara a abertura do conteúdo -->
+      <button class="accordion-header">Título 1</button>
+
+      <!-- Conteúdo correspondente ao botão acima -->
+      <div class="accordion-content">
+        <p>Conteúdo 1</p>
+      </div>
+
+      <!-- Segundo botão -->
+      <button class="accordion-header">Título 2</button>
+
+      <!-- Conteúdo do segundo botão -->
+      <div class="accordion-content">
+        <p>Conteúdo 2</p>
+      </div>
+    </div>
+
+    <script>
+      // Aguarda o carregamento completo do DOM
+      document.addEventListener("DOMContentLoaded", function () {
+        // Seleciona todos os botões do tipo .accordion-header
+        const headers = document.querySelectorAll(".accordion-header");
+
+        // Para cada botão encontrado...
+        headers.forEach((header) => {
+          // Adiciona um ouvinte de evento para cliques
+          header.addEventListener("click", function () {
+            // Ao clicar, fecha todas as áreas de conteúdo (modo único)
+            document
+              .querySelectorAll(".accordion-content")
+              .forEach((content) => {
+                content.classList.remove("active"); // Remove a classe que mostra o conteúdo
+              });
+
+            // Encontra o conteúdo logo abaixo do botão clicado
+            const content = header.nextElementSibling;
+
+            // Ativa (exibe) apenas este conteúdo
+            content.classList.add("active");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
