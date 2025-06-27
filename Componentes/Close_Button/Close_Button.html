@@ -1,0 +1,74 @@
+<!--
+Componente Close Button: botão de fechar universal.
+Usado em modais, alertas, cards, notificações etc.
+Feito com HTML, CSS e JS puro.
+Fechamento real da caixa com JS (remove do DOM).
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Close Button - Componente Reutilizável</title>
+
+    <style>
+      /* Container que simula um alerta ou modal */
+      .box {
+        position: relative; /* Necessário para posicionar o botão dentro */
+        padding: 20px;
+        margin: 40px auto;
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Estilo do botão de fechar */
+      .close-button {
+        position: absolute; /* Posicionado dentro do container pai */
+        top: 10px; /* Distância do topo */
+        right: 12px; /* Distância da direita */
+        background: none; /* Sem fundo */
+        border: none; /* Sem borda */
+        font-size: 20px; /* Tamanho do “×” */
+        font-weight: bold;
+        color: #888;
+        cursor: pointer;
+        line-height: 1;
+      }
+
+      .close-button:hover {
+        color: #000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Caixa simulando um modal ou alerta com botão de fechar -->
+    <div class="box" id="alertBox">
+      <!-- Botão de fechar (ícone ×) -->
+      <button class="close-button" aria-label="Fechar" id="closeBtn">
+        &times;
+      </button>
+
+      <!-- Conteúdo da caixa -->
+      <h3>Aviso</h3>
+      <p>Esta é uma mensagem com botão de fechar.</p>
+    </div>
+
+    <script>
+      // Espera o DOM carregar
+      document.addEventListener("DOMContentLoaded", () => {
+        const closeBtn = document.getElementById("closeBtn");
+        const alertBox = document.getElementById("alertBox");
+
+        // Ao clicar no botão, remove o elemento pai do DOM
+        closeBtn.addEventListener("click", () => {
+          alertBox.remove(); // Remove a caixa da página
+        });
+      });
+    </script>
+  </body>
+</html>
